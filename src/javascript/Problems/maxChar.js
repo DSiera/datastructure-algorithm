@@ -9,21 +9,28 @@
 // Does the given string have any repeated characters in it?
 
 function maxChar(str) {
-    let map = new Map();
+    let charMap = {};
+
     for (let char of str) {
-        if (map.has(char)) {
-            map.set(char, map.get(char) + 1);
-        } else {
-            map.set(char, 1);
+        charMap[char] = charMap[char] + 1 || 1;
+        // if (charMap[char]) {
+        //     charMap[char]++;
+        // } else {
+        //     charMap[char] = 1;
+        // }
+    }
+
+    let max = 0;
+    let maxChar = '';
+
+    for (let char in charMap) {
+        if (charMap[char] > max) {
+            max = charMap[char];
+            maxChar = char;
         }
     }
 
-    const keys = Object.keys(map);
-    let maxObject = {};
-    for (let key of keys) {
-
-    }
-    return map;
+    return maxChar;
 }
 
 console.log(maxChar("abcccccccd"));
